@@ -1,0 +1,157 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "Fliesen Dini" [ref=e4] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e5]: Fliesen
+        - generic [ref=e6]: Dini
+      - navigation [ref=e7]:
+        - link "Leistungen" [ref=e8] [cursor=pointer]:
+          - /url: "#leistungen"
+        - link "Über uns" [ref=e9] [cursor=pointer]:
+          - /url: "#ueber-uns"
+        - link "Projekte" [ref=e10] [cursor=pointer]:
+          - /url: "#projekte"
+        - link "Kontakt" [ref=e11] [cursor=pointer]:
+          - /url: "#kontakt"
+      - link "Anfrage senden" [ref=e12] [cursor=pointer]:
+        - /url: "#kontakt"
+  - main [ref=e13]:
+    - generic [ref=e16]:
+      - generic [ref=e17]:
+        - heading "Ihr Meisterbetrieb für hochwertige Fliesenarbeiten" [level=1] [ref=e18]
+        - paragraph [ref=e19]: Von der ersten Beratung bis zur fertigen Installation – wir verlegen Fliesen, Naturstein und gestalten Bäder, die begeistern. Qualität, Präzision und Leidenschaft seit über 20 Jahren.
+        - generic [ref=e20]:
+          - link "Kostenloses Beratungsgespräch" [ref=e21] [cursor=pointer]:
+            - /url: "#kontakt"
+          - link "Leistungen entdecken" [ref=e22] [cursor=pointer]:
+            - /url: "#leistungen"
+      - paragraph [ref=e32]: Hochwertige Fliesenarbeiten
+    - generic [ref=e34]:
+      - generic [ref=e35]:
+        - heading "Unsere Leistungen" [level=2] [ref=e36]
+        - paragraph [ref=e37]: Wir bieten Ihnen ein breites Spektrum an Fliesen- und Natursteinarbeiten – immer mit dem Anspruch an höchste Qualität und Sauberkeit.
+      - generic [ref=e38]:
+        - generic [ref=e39]:
+          - generic [ref=e40]: Fliesenverlegung
+          - generic [ref=e48]: Präzise Verlegung von Fliesen und Platten für Boden und Wand – ob kleinformatig oder großformatig, wir meistern jede Herausforderung.
+        - generic [ref=e50]:
+          - generic [ref=e51]: Bädergestaltung
+          - generic [ref=e57]: Komplette Badrenovierung aus einer Hand – von der Planung über die Fliesenarbeiten bis zur fertigen Wohlfühloase.
+        - generic [ref=e59]:
+          - generic [ref=e60]: Naturstein
+          - generic [ref=e65]: Edle Natursteinverlegung für Boden, Treppe und Fassade. Marmor, Granit, Sandstein – wir verarbeiten Materialien von höchster Qualität.
+        - generic [ref=e67]:
+          - generic [ref=e68]: Renovierung & Sanierung
+          - generic [ref=e73]: Komplette Sanierung von alten Fliesenbelägen, inklusive Vorbereitung des Untergrunds und fachgerechter Entsorgung.
+      - link "Projekt anfragen" [ref=e76] [cursor=pointer]:
+        - /url: "#kontakt"
+    - generic [ref=e79]:
+      - generic [ref=e80]:
+        - heading "Über Fliesen Dini" [level=2] [ref=e81]
+        - paragraph [ref=e82]: Seit über 20 Jahren sind wir Ihr verlässlicher Partner für Fliesen- und Natursteinarbeiten in der Region. Als zertifizierter Meisterbetrieb stehen wir für handwerkliche Präzision, termingenaue Ausführung und faire Preise.
+        - paragraph [ref=e83]: Ob Modernisierung des Badezimmers, Verlegung von großformatigen Fliesen im Wohnbereich oder die Gestaltung von Außenanlagen – wir beraten Sie individuell und setzen Ihre Wünsche fachgerecht um.
+        - generic [ref=e84]:
+          - generic [ref=e86]:
+            - generic [ref=e87]: 20+
+            - generic [ref=e88]: Jahre Erfahrung
+          - generic [ref=e90]:
+            - generic [ref=e91]: 500+
+            - generic [ref=e92]: Projekte
+          - generic [ref=e94]:
+            - generic [ref=e95]: 100%
+            - generic [ref=e96]: Zufriedenheit
+          - generic [ref=e98]:
+            - generic [ref=e99]: Meister
+            - generic [ref=e100]: Qualifikation
+      - paragraph [ref=e109]: Meisterbetrieb Fliesen Dini
+    - generic [ref=e111]:
+      - generic [ref=e112]:
+        - heading "Unsere Projekte" [level=2] [ref=e113]
+        - paragraph [ref=e114]: Ein Einblick in unsere Arbeit – jedes Projekt erzählt eine eigene Geschichte von Qualität und Gestaltung.
+      - generic [ref=e115]:
+        - generic [ref=e122] [cursor=pointer]:
+          - heading "Modernes Bad in neutralem Grau" [level=3] [ref=e123]
+          - paragraph [ref=e124]: Privatbad München
+        - generic [ref=e132] [cursor=pointer]:
+          - heading "Großformatige Fliesen im Wohnbereich" [level=3] [ref=e133]
+          - paragraph [ref=e134]: Offene Wohnküche
+        - generic [ref=e142] [cursor=pointer]:
+          - heading "Natursteintreppe mit Edelstahlgeländer" [level=3] [ref=e143]
+          - paragraph [ref=e144]: Einfamilienhaus
+        - generic [ref=e152] [cursor=pointer]:
+          - heading "Terrasse mit Feinsteinzeug" [level=3] [ref=e153]
+          - paragraph [ref=e154]: Garten & Außenbereich
+        - generic [ref=e162] [cursor=pointer]:
+          - heading "Fliesenbild im Eingangsbereich" [level=3] [ref=e163]
+          - paragraph [ref=e164]: Eingang & Diele
+        - generic [ref=e172] [cursor=pointer]:
+          - heading "Barrierefreies Bad" [level=3] [ref=e173]
+          - paragraph [ref=e174]: Seniorengerecht
+    - generic [ref=e178]:
+      - generic [ref=e179]:
+        - heading "Kontaktieren Sie uns" [level=2] [ref=e180]
+        - paragraph [ref=e181]: Haben Sie ein Projekt im Sinn? Wir beraten Sie gerne unverbindlich und erstellen Ihnen ein individuelles Angebot.
+        - generic [ref=e182]:
+          - generic [ref=e186]:
+            - generic [ref=e187]: Telefon
+            - generic [ref=e188]: +49 (0) 123 456 789
+          - generic [ref=e193]:
+            - generic [ref=e194]: E-Mail
+            - generic [ref=e195]: info@fliesen-dini.de
+          - generic [ref=e200]:
+            - generic [ref=e201]: Adresse
+            - generic [ref=e202]: Musterstraße 123, 80331 München
+      - generic [ref=e204]:
+        - generic [ref=e205]:
+          - generic [ref=e206]:
+            - text: Name
+            - textbox "Name" [ref=e207]:
+              - /placeholder: Max Mustermann
+          - generic [ref=e208]:
+            - text: E-Mail
+            - textbox "E-Mail" [ref=e209]:
+              - /placeholder: max@beispiel.de
+        - generic [ref=e210]:
+          - text: Betreff
+          - textbox "Betreff" [ref=e211]:
+            - /placeholder: Ihr Anliegen
+        - generic [ref=e212]:
+          - text: Nachricht
+          - textbox "Nachricht" [ref=e213]:
+            - /placeholder: Beschreiben Sie Ihr Projekt...
+        - button "Nachricht senden" [ref=e214]
+  - contentinfo [ref=e215]:
+    - generic [ref=e216]:
+      - generic [ref=e217]:
+        - generic [ref=e218]:
+          - link "Fliesen Dini" [ref=e219] [cursor=pointer]:
+            - /url: /
+            - generic [ref=e220]: Fliesen
+            - generic [ref=e221]: Dini
+          - paragraph [ref=e222]: Ihr Meisterbetrieb für hochwertige Fliesen- und Natursteinarbeiten. Qualität, die bleibt.
+        - generic [ref=e223]:
+          - heading "Navigation" [level=3] [ref=e224]
+          - navigation [ref=e225]:
+            - link "Leistungen" [ref=e226] [cursor=pointer]:
+              - /url: "#leistungen"
+            - link "Über uns" [ref=e227] [cursor=pointer]:
+              - /url: "#ueber-uns"
+            - link "Projekte" [ref=e228] [cursor=pointer]:
+              - /url: "#projekte"
+            - link "Kontakt" [ref=e229] [cursor=pointer]:
+              - /url: "#kontakt"
+        - generic [ref=e230]:
+          - heading "Kontakt" [level=3] [ref=e231]
+          - generic [ref=e232]:
+            - paragraph [ref=e233]: Musterstraße 123
+            - paragraph [ref=e234]: 80331 München
+            - paragraph [ref=e235]: +49 (0) 123 456 789
+            - paragraph [ref=e236]: info@fliesen-dini.de
+      - generic [ref=e237]:
+        - paragraph [ref=e238]: © 2026 Fliesen Dini. Alle Rechte vorbehalten.
+        - generic [ref=e239]:
+          - link "Impressum" [ref=e240] [cursor=pointer]:
+            - /url: "#"
+          - link "Datenschutz" [ref=e241] [cursor=pointer]:
+            - /url: "#"

@@ -1,0 +1,13 @@
+- generic [ref=f9e3]:
+  - generic [ref=f9e4]: "[plugin:vite:import-analysis] Failed to resolve import \"./components/Hero\" from \"src/App.tsx\". Does the file exist?"
+  - generic [ref=f9e5]: C:/Users/kasum/Fliesen Dini/src/App.tsx:2:17
+  - generic [ref=f9e6]: "16 | } 17 | import Navbar from \"./components/Navbar\"; 18 | import Hero from \"./components/Hero\"; | ^ 19 | import Marquee from \"./components/Marquee\"; 20 | import BentoGrid from \"./components/BentoGrid\";"
+  - generic [ref=f9e7]: at TransformPluginContext._formatLog (file:///C:/Users/kasum/Fliesen%20Dini/node_modules/vite/dist/node/chunks/dep-Dm0c1Wj2.js:42658:41) at TransformPluginContext.error (file:///C:/Users/kasum/Fliesen%20Dini/node_modules/vite/dist/node/chunks/dep-Dm0c1Wj2.js:42655:16) at normalizeUrl (file:///C:/Users/kasum/Fliesen%20Dini/node_modules/vite/dist/node/chunks/dep-Dm0c1Wj2.js:40634:23) at process.processTicksAndRejections (node:internal/process/task_queues:104:5) at async file:///C:/Users/kasum/Fliesen%20Dini/node_modules/vite/dist/node/chunks/dep-Dm0c1Wj2.js:40753:37 at async Promise.all (index 4) at async TransformPluginContext.transform (file:///C:/Users/kasum/Fliesen%20Dini/node_modules/vite/dist/node/chunks/dep-Dm0c1Wj2.js:40680:7) at async EnvironmentPluginContainer.transform (file:///C:/Users/kasum/Fliesen%20Dini/node_modules/vite/dist/node/chunks/dep-Dm0c1Wj2.js:42453:18) at async loadAndTransform (file:///C:/Users/kasum/Fliesen%20Dini/node_modules/vite/dist/node/chunks/dep-Dm0c1Wj2.js:35845:27) at async viteTransformMiddleware (file:///C:/Users/kasum/Fliesen%20Dini/node_modules/vite/dist/node/chunks/dep-Dm0c1Wj2.js:37369:24
+  - generic [ref=f9e8]:
+    - text: Click outside, press Esc key, or fix the code to dismiss.You can also disable this overlay by setting
+    - code [ref=f9e9]: server.hmr.overlay
+    - text: to
+    - code [ref=f9e10]: "false"
+    - text: in
+    - code [ref=f9e11]: vite.config.ts
+    - text: .
