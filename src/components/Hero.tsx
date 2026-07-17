@@ -43,17 +43,6 @@ function Hero() {
           ease: 'power4.out',
           delay: 0.5 + index * 0.2,
         })
-
-        gsap.fromTo(
-          wordEl,
-          { fontSize: 'clamp(3rem, 22vw, 18rem)' },
-          {
-            fontSize: 'clamp(2.5rem, 16vw, 14rem)',
-            duration: 1.8,
-            ease: 'power3.out',
-            delay: 0.3 + index * 0.2,
-          }
-        )
       })
     }, containerRef)
 
@@ -75,26 +64,23 @@ function Hero() {
       <div className="relative z-10 w-full h-full">
         <div
           ref={(el) => { textRefs.current[0] = el }}
-          className="absolute text-[12vw] font-medium leading-none tracking-tight uppercase text-white/90"
-          style={{ top: '25%', left: '5%' }}
+          className="absolute text-[10vw] md:text-[7vw] font-medium leading-none tracking-tight uppercase text-white/90 top-[32%] md:top-[26%] left-[14%] md:left-[20%]"
         >
-          Meisterhaft
+          PLANUNG.
         </div>
 
         <div
           ref={(el) => { textRefs.current[1] = el }}
-          className="absolute text-[12vw] font-medium leading-none tracking-tight uppercase text-copper"
-          style={{ top: '45%', right: '5%' }}
+          className="absolute text-[10vw] md:text-[7vw] font-medium leading-none tracking-tight uppercase text-copper top-[39%] md:top-[38%] right-[8%] md:right-[12%]"
         >
-          Fliesen
+          VERLEGUNG.
         </div>
 
         <div
           ref={(el) => { textRefs.current[2] = el }}
-          className="absolute text-[12vw] font-medium leading-none tracking-tight uppercase text-white/90"
-          style={{ top: '65%', left: '20%' }}
+          className="absolute text-[11vw] md:text-[8vw] font-semibold leading-none tracking-tight uppercase text-white/90 top-[49%] md:top-[52%] left-1/2 -translate-x-1/2 md:left-[28%] md:translate-x-0 whitespace-nowrap"
         >
-          Gestalten
+          PERFEKTION.
         </div>
       </div>
 

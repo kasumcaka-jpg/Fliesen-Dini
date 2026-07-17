@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
+import { Link } from 'react-router-dom'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
@@ -6,6 +7,34 @@ gsap.registerPlugin(ScrollTrigger)
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+  const [legalOpen, setLegalOpen] = useState(false)
+  const ticking = useRef(false)
+  const legalRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const onScroll = () => {
+      if (ticking.current) return
+      ticking.current = true
+      requestAnimationFrame(() => {
+        setScrolled(window.scrollY > 80)
+        ticking.current = false
+      })
+    }
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  useEffect(() => {
+    const onClick = (e: MouseEvent) => {
+      if (legalRef.current && !legalRef.current.contains(e.target as Node)) {
+        setLegalOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', onClick)
+    return () => document.removeEventListener('mousedown', onClick)
+  }, [])
 
   useEffect(() => {
     if (isOpen) {
@@ -20,35 +49,78 @@ function Navbar() {
 
   return (
     <>
-      <nav className="fixed top-6 left-0 right-0 z-50 px-6 md:px-10 flex justify-between items-center">
-        <a href="#" className="glass-panel flex items-center gap-2 px-5 py-3">
-          <img src="/logo.jpg" alt="Fliesen DINI Logo" className="h-7 w-auto object-contain" />
-          <span className="text-sm font-semibold tracking-widest uppercase">Fliesen DINI</span>
+      <nav className="fixed top-6 left-0 right-0 z-50 px-6 md:px-10">
+        <a
+          href="#"
+          className={`absolute z-40 flex items-center gap-2 px-5 py-3 glass-panel transition-all duration-500 ease-in-out ${
+            scrolled
+              ? 'left-6 md:left-10 top-0 scale-100'
+              : 'left-1/2 top-[44%] -translate-x-1/2 scale-[1.3] md:scale-[2.4]'
+          }`}
+          style={{ transformOrigin: 'center' }}
+        >
+          <img src="/logo.png" alt="Fliesen DINI Logo" className="h-7 w-auto object-contain" />
+          <span className="text-sm font-semibold tracking-widest uppercase whitespace-nowrap">Fliesen DINI</span>
         </a>
 
-        <div className="hidden md:flex glass-panel items-center gap-8 px-2 py-2">
-          {['Leistungen', 'Prozess', 'Referenzen', 'Kontakt'].map((item) => (
-            <a
-              key={item}
-              href={`#${item.toLowerCase()}`}
-              className="text-xs font-medium tracking-widest uppercase text-white/70 hover:text-copper transition-colors duration-300 px-3 py-2"
-            >
-              {item}
-            </a>
-          ))}
-        </div>
+        <div className="flex justify-end items-center gap-3 relative z-[60]">
+          <div className="hidden md:flex glass-panel items-center gap-8 px-2 py-2">
+            {['Leistungen', 'Prozess', 'Referenzen', 'Kontakt'].map((item) => (
+              <a
+                key={item}
+                href={`#${item.toLowerCase()}`}
+                className="text-xs font-medium tracking-widest uppercase text-white/70 hover:text-copper transition-colors duration-300 px-3 py-2"
+              >
+                {item}
+              </a>
+            ))}
+          </div>
 
-        <button
-          onClick={() => setIsOpen(true)}
-          className="md:hidden glass-panel p-3"
-          aria-label="Menu öffnen"
-        >
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" className="text-white">
-            <line x1="3" y1="6" x2="17" y2="6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-            <line x1="3" y1="10" x2="17" y2="10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-            <line x1="3" y1="14" x2="17" y2="14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-          </svg>
-        </button>
+          <div className="hidden md:block relative" ref={legalRef}>
+            <button
+              onClick={() => setLegalOpen((v) => !v)}
+              className="glass-panel text-xs font-medium tracking-widest uppercase text-white/70 hover:text-copper transition-colors duration-300 px-3 py-2 flex items-center gap-1"
+              aria-expanded={legalOpen}
+              aria-haspopup="true"
+            >
+              Rechtliches
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" className={`transition-transform duration-300 ${legalOpen ? 'rotate-180' : ''}`}>
+                <path d="M3 4.5 6 7.5 9 4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+            {legalOpen && (
+              <div className="absolute right-0 top-full mt-2 w-52 bg-neutral-900/95 backdrop-blur-lg border border-white/10 rounded-2xl p-2 shadow-xl">
+                {[
+                  { label: 'Impressum', to: '/impressum' },
+                  { label: 'Datenschutz', to: '/datenschutz' },
+                  { label: 'AGB', to: '/agb' },
+                  { label: 'Cookie-Einstellungen', to: '/cookie-einstellungen' },
+                ].map((item) => (
+                  <Link
+                    key={item.to}
+                    to={item.to}
+                    onClick={() => setLegalOpen(false)}
+                    className="block px-4 py-2.5 text-sm text-white/70 hover:text-copper hover:bg-white/5 rounded-lg transition-colors"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
+
+          <button
+            onClick={() => setIsOpen(true)}
+            className="md:hidden glass-panel p-3"
+            aria-label="Menu öffnen"
+          >
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" className="text-white">
+              <line x1="3" y1="6" x2="17" y2="6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+              <line x1="3" y1="10" x2="17" y2="10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+              <line x1="3" y1="14" x2="17" y2="14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+            </svg>
+          </button>
+        </div>
       </nav>
 
       {isOpen && (
@@ -87,6 +159,23 @@ function Navbar() {
                 {item}
               </a>
             ))}
+            <div className="flex flex-col items-center gap-4 mt-6 pt-6 border-t border-white/10">
+              {[
+                { label: 'Impressum', to: '/impressum' },
+                { label: 'Datenschutz', to: '/datenschutz' },
+                { label: 'AGB', to: '/agb' },
+                { label: 'Cookie-Einstellungen', to: '/cookie-einstellungen' },
+              ].map((item) => (
+                <Link
+                  key={item.to}
+                  to={item.to}
+                  onClick={() => setIsOpen(false)}
+                  className="text-lg font-medium tracking-wide text-white/60 hover:text-copper transition-colors"
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
           </nav>
         </div>
       )}

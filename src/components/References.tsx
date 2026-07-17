@@ -5,10 +5,10 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
 
 const projects = [
-  { title: 'Bad modernisiert', location: 'Schwabmünchen', image: '/images/bath-1.jpg' },
-  { title: 'Küche Naturstein', location: 'Augsburg', image: '/images/kitchen.jpg' },
-  { title: 'Fliesen im Wohnbereich', location: 'Königsbrunn', image: '/images/tile-1.jpg' },
-  { title: 'Treppe & Geländer', location: 'Bobingen', image: '/images/tile-2.jpg' },
+  { title: 'Bad modernisiert', location: 'Bobingen', image: '/images/bad-modernisiert.jpg' },
+  { title: 'Küche Naturstein', location: 'Augsburg', image: '/images/kueche-naturstein.jpg' },
+  { title: 'Fliesen im Wohnbereich', location: 'Schwabmünchen', image: '/images/wohnbereich.png' },
+  { title: 'Treppe & Geländer', location: 'Schwabmünchen', image: '/images/treppe-gelaender.jpg' },
 ]
 
 function ClipRevealCard({ project }: { project: typeof projects[0] }) {
@@ -92,7 +92,7 @@ function References() {
         <div className="mb-20">
           <div className="text-xs font-medium tracking-widest uppercase text-copper mb-4">Referenzen</div>
           <h2 className="text-4xl md:text-6xl font-medium tracking-tight max-w-4xl">
-            Aus Alt mach Neu. Mit Stil.
+            Unsere Projekte | Verwandlung auf höchstem Niveau.
           </h2>
         </div>
 

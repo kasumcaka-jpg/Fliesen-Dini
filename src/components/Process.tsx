@@ -10,21 +10,21 @@ const steps = [
     title: 'Beratung',
     description: 'Persönliches Gespräch vor Ort. Wir analysieren Ihre Räumlichkeiten, hören Ihre Wünsche und entwickeln erste Konzepte.',
     icon: '💬',
-    image: '/images/bath-2.jpg',
+    image: '/images/beratung.jpg',
   },
   {
     number: '02',
     title: 'Planung',
     description: 'Detaillierte 3D-Visualisierung und Materialauswahl. Sie sehen Ihr Projekt photorealistisch, bevor wir beginnen.',
     icon: '📐',
-    image: '/images/tile-6.jpg',
+    image: '/images/planung.jpg',
   },
   {
     number: '03',
     title: 'Verlegung',
     description: 'Präzise Handarbeit mit modernster Technik. Termingerecht, sauber und mit dem Auge fürs Detail.',
     icon: '🔨',
-    image: '/images/kitchen.jpg',
+    image: '/images/verlegung.jpg',
   },
 ]
 
@@ -39,30 +39,36 @@ function Process() {
 
     const stepElements = container.querySelectorAll('.process-step')
 
-    gsap.set(stepElements, { opacity: 0, x: 100 })
+    const ctx = gsap.context(() => {
+      stepElements.forEach((step) => {
+        gsap.fromTo(
+          step,
+          { opacity: 0, y: 60 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.9,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: step,
+              start: 'top 80%',
+              toggleActions: 'play none none reverse',
+            },
+          }
+        )
+      })
+    }, section)
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: section,
-        start: 'top top',
-        end: '+=3000',
-        pin: true,
-        scrub: 1,
-        anticipatePin: 1,
-      },
-    })
-
-    stepElements.forEach((step, index) => {
-      tl.to(step, {
-        opacity: 1,
-        x: 0,
-        duration: 1,
-        ease: 'power3.out',
-      }, index * 1)
-    })
+    // Refresh after layout settles and once images are loaded,
+    // so trigger positions are calculated correctly (fixes "hang on first scroll").
+    const refresh = () => ScrollTrigger.refresh()
+    const raf = requestAnimationFrame(refresh)
+    window.addEventListener('load', refresh)
 
     return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
+      cancelAnimationFrame(raf)
+      window.removeEventListener('load', refresh)
+      ctx.revert()
     }
   }, [])
 

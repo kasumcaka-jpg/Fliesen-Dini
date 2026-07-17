@@ -5,25 +5,52 @@ function BookingCTA() {
     service: '',
     name: '',
     phone: '',
+    email: '',
+    message: '',
   })
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [error, setError] = useState('')
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    setError('')
 
-    const btn = e.currentTarget.querySelector('button[type="submit"]') as HTMLButtonElement
-    const originalText = btn.textContent
-    btn.textContent = '✅ Anfrage gesendet!'
-    btn.disabled = true
+    const serviceLabel =
+      {
+        fliesenverlegung: 'Großformatfliesen',
+        badsanierung: 'Badsanierung & Komplettbäder',
+        naturstein: 'Naturstein (Küche, Treppen)',
+        fugen: 'Fugenspezialist',
+        beratung: 'Allgemeine Beratung',
+      }[formData.service] || 'Nicht angegeben'
 
-    setIsSubmitted(true)
-    setFormData({ service: '', name: '', phone: '' })
+    const payload = new FormData()
+    payload.append('name', formData.name)
+    payload.append('phone', formData.phone)
+    payload.append('email', formData.email)
+    payload.append('service', serviceLabel)
+    payload.append('message', formData.message)
+    payload.append('_subject', 'Neue Website-Anfrage')
 
-    setTimeout(() => {
-      btn.textContent = originalText
-      btn.disabled = false
-      setIsSubmitted(false)
-    }, 3000)
+    try {
+      // Formspree: E-Mails werden direkt an info@fliesen-dini.de geschickt
+      const response = await fetch('https://formspree.io/f/mzdneqrg', {
+        method: 'POST',
+        body: payload,
+        headers: { Accept: 'application/json' },
+      })
+
+      if (response.ok) {
+        setIsSubmitted(true)
+        setFormData({ service: '', name: '', phone: '', email: '', message: '' })
+        setTimeout(() => setIsSubmitted(false), 5000)
+      } else {
+        const data = await response.json()
+        setError(data?.errors?.[0]?.message || 'Senden fehlgeschlagen – bitte erneut versuchen.')
+      }
+    } catch (err) {
+      setError('Verbindungsfehler – prüfen Sie Internetzugang.')
+    }
   }
 
   return (
@@ -32,11 +59,10 @@ function BookingCTA() {
         <div className="bg-neutral-900/50 rounded-3xl p-10 md:p-16 flex flex-col md:flex-row gap-12 items-center">
           <div className="flex-1">
             <div className="text-xs font-medium tracking-widest uppercase text-copper mb-4">Kontakt</div>
-            <h2 className="text-4xl md:text-6xl font-medium tracking-tight mb-6">
-              Projekt starten.
-            </h2>
+            <h2 className="text-4xl md:text-6xl font-medium tracking-tight mb-6">Projekt starten.</h2>
             <p className="text-lg text-white/60 leading-relaxed mb-8">
-              Lassen Sie uns gemeinsam Ihr Traumbad oder Ihre Wunschküche verwirklichen. Kostenlose Beratung vor Ort in Schwabmünchen und Umgebung.
+              Lassen Sie uns gemeinsam Ihr Traumbad oder Ihre Wunschküche verwirklichen. Kostenlose
+              Beratung vor Ort in Schwabmünchen und Umgebung.
             </p>
 
             <div className="space-y-4 text-white/60">
@@ -44,14 +70,18 @@ function BookingCTA() {
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-copper">
                   <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
                 </svg>
-                <a href="tel:+491729872148" className="hover:text-copper transition-colors">0172 / 987 2148</a>
+                <a href="tel:+491729872148" className="hover:text-copper transition-colors">
+                  0172 / 987 2148
+                </a>
               </div>
               <div className="flex items-center gap-3">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-copper">
                   <rect width="20" height="16" x="2" y="4" rx="2" />
                   <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
                 </svg>
-                <a href="mailto:info@fliesen-dini.de" className="hover:text-copper transition-colors">info@fliesen-dini.de</a>
+                <a href="mailto:info@fliesen-dini.de" className="hover:text-copper transition-colors">
+                  info@fliesen-dini.de
+                </a>
               </div>
               <div className="flex items-center gap-3">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-copper">
@@ -65,6 +95,7 @@ function BookingCTA() {
 
           <div className="flex-1 w-full">
             <form onSubmit={handleSubmit} className="space-y-6">
+              {/* Service */}
               <div className="space-y-2">
                 <label className="text-sm font-medium text-white/80">Service</label>
                 <select
@@ -82,6 +113,7 @@ function BookingCTA() {
                 </select>
               </div>
 
+              {/* Name */}
               <div className="space-y-2">
                 <label className="text-sm font-medium text-white/80">Name</label>
                 <input
@@ -94,6 +126,7 @@ function BookingCTA() {
                 />
               </div>
 
+              {/* Telefonnummer */}
               <div className="space-y-2">
                 <label className="text-sm font-medium text-white/80">Telefonnummer</label>
                 <input
@@ -106,12 +139,42 @@ function BookingCTA() {
                 />
               </div>
 
+              {/* E‑Mail */}
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-white/80">E‑Mail‑Adresse</label>
+                <input
+                  type="email"
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  placeholder="max@example.com"
+                  className="w-full bg-neutral-800 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-copper transition-colors"
+                  required
+                />
+              </div>
+
+              {/* Nachricht */}
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-white/80 mb-1">Nachricht</label>
+                <textarea
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  placeholder="Beschreiben Sie Ihre Idee, Wünsche, Fragen oder besondere Anforderungen..."
+                  rows={6}
+                  className="w-full bg-neutral-800 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-copper transition-colors"
+                  required
+                />
+              </div>
+
+              {/* Fehleranzeige */}
+              {error && <p className="text-red-400 text-sm">{error}</p>}
+
+              {/* Button */}
               <button
                 type="submit"
                 disabled={isSubmitted}
                 className="w-full bg-copper hover:bg-copper-dark text-black font-medium py-4 rounded-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {isSubmitted ? '✅ Anfrage gesendet!' : 'Anfrage senden'}
+                {isSubmitted ? '✅ Danke für Ihre Anfrage!' : 'Anfrage senden'}
               </button>
             </form>
           </div>
@@ -127,7 +190,7 @@ function WhatsAppButton() {
       href="https://wa.me/491729872148"
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-8 right-8 z-50 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-2xl transition-all duration-300 hover:scale-110 animate-pulse"
+      className="fixed bottom-[96px] right-4 md:bottom-8 md:right-8 z-50 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-2xl transition-all duration-300 hover:scale-110 animate-pulse"
       aria-label="WhatsApp Nachricht"
     >
       <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">

@@ -44,7 +44,7 @@ const cards: CardData[] = [
     description: 'Sehen Sie Ihr Bad vor dem Bau in photorealistischer Qualität.',
     icon: '◎',
     span: 'md:col-span-2',
-    image: '/images/tile-5.jpg',
+    image: '/images/3d-planung.jpg',
   },
 ]
 
