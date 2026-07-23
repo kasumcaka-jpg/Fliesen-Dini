@@ -24,7 +24,7 @@ export default function Impressum() {
 
       <Section title="Zuständige Handwerkskammer">
         <p>
-          [PLATZHALTER – BITTE PRÜFEN] Voraussichtlich Handwerkskammer für Schwaben.
+          Handwerkskammer für Schwaben
         </p>
       </Section>
 
