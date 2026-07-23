@@ -13,34 +13,19 @@ const projects = [
 
 function ClipRevealCard({ project }: { project: typeof projects[0] }) {
   const cardRef = useRef<HTMLDivElement>(null)
-  const beforeRef = useRef<HTMLDivElement>(null)
-  const afterRef = useRef<HTMLDivElement>(null)
+  const imageRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const card = cardRef.current
-    const beforeEl = beforeRef.current
-    const afterEl = afterRef.current
-    if (!card || !beforeEl || !afterEl) return
+    const imageEl = imageRef.current
+    if (!card || !imageEl) return
 
     const ctx = gsap.context(() => {
-      gsap.set(beforeEl, { clipPath: 'inset(0 50% 0 50%)' })
-      gsap.set(afterEl, { clipPath: 'inset(0 50% 0 50%)' })
+      gsap.set(imageEl, { clipPath: 'inset(0 50% 0 50%)' })
 
-      gsap.to(beforeEl, {
+      gsap.to(imageEl, {
         clipPath: 'inset(0 0% 0 0%)',
         duration: 1.2,
-        ease: 'power4.out',
-        scrollTrigger: {
-          trigger: card,
-          start: 'top bottom-=80',
-          toggleActions: 'play none none reverse',
-        },
-      })
-
-      gsap.to(afterEl, {
-        clipPath: 'inset(0 0% 0 0%)',
-        duration: 1.2,
-        delay: 0.3,
         ease: 'power4.out',
         scrollTrigger: {
           trigger: card,
@@ -62,7 +47,7 @@ function ClipRevealCard({ project }: { project: typeof projects[0] }) {
       <div className="absolute inset-0 bg-gradient-to-br from-neutral-800 to-neutral-900" />
 
       <div
-        ref={beforeRef}
+        ref={imageRef}
         className="absolute inset-0 flex items-center justify-center"
       >
         <img

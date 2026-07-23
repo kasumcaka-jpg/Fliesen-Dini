@@ -1,7 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
 import Layout from './components/Layout'
 import ScrollToTop from './components/ScrollToTop'
-import ScrollButtons from './components/ScrollButtons'
 import Hero from './components/Hero'
 import Marquee from './components/Marquee'
 import BentoGrid from './components/BentoGrid'

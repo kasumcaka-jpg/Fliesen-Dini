@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { readPrefs } from './legal/cookiePrefs'
 
 function BookingCTA() {
   const [formData, setFormData] = useState({
@@ -185,6 +186,21 @@ function BookingCTA() {
 }
 
 function WhatsAppButton() {
+  const [prefs, setPrefs] = useState<{ marketing: boolean }>(() => {
+    const p = readPrefs()
+    return { marketing: p.marketing }
+  })
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const current = readPrefs()
+      setPrefs({ marketing: current.marketing })
+    }, 500)
+    return () => clearInterval(interval)
+  }, [])
+
+  if (!prefs.marketing) return null
+
   return (
     <a
       href="https://wa.me/491729872148"

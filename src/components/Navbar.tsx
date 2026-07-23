@@ -47,6 +47,24 @@ function Navbar() {
     }
   }, [isOpen])
 
+  useEffect(() => {
+    const menuLinks = document.querySelectorAll('.mobile-menu-link')
+    if (!menuLinks.length) return
+
+    if (isOpen) {
+      gsap.set(menuLinks, { opacity: 0, y: 20 })
+      gsap.to(menuLinks, {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        stagger: 0.1,
+        ease: 'power3.out',
+      })
+    } else {
+      gsap.set(menuLinks, { opacity: 0, y: 20 })
+    }
+  }, [isOpen])
+
   return (
     <>
       <nav className="fixed top-6 left-0 right-0 z-50 px-6 md:px-10">
@@ -137,24 +155,12 @@ function Navbar() {
           </button>
 
           <nav className="flex flex-col items-center gap-8">
-            {['Leistungen', 'Prozess', 'Referenzen', 'Kontakt'].map((item, index) => (
+            {['Leistungen', 'Prozess', 'Referenzen', 'Kontakt'].map((item) => (
               <a
                 key={item}
                 href={`#${item.toLowerCase()}`}
                 onClick={() => setIsOpen(false)}
-                className="text-3xl md:text-5xl font-medium tracking-tight text-white hover:text-copper transition-colors duration-300"
-                style={{ opacity: 0, transform: 'translateY(20px)' }}
-                ref={(el) => {
-                  if (el) {
-                    gsap.to(el, {
-                      opacity: 1,
-                      y: 0,
-                      duration: 0.6,
-                      delay: index * 0.1,
-                      ease: 'power3.out',
-                    })
-                  }
-                }}
+                className="mobile-menu-link text-3xl md:text-5xl font-medium tracking-tight text-white hover:text-copper transition-colors duration-300"
               >
                 {item}
               </a>
